@@ -7,36 +7,60 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="bg-shapes">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+        <div class="shape-3"></div>
+    </div>
+    
     <header class="header">
-        <nav class="navbar">
-            <div class="logo">
-                <span class="logo-text">Healthy</span>
-                <span class="logo-beta">AI</span>
-            </div>
-            <a href="mailto:join@gethealthy.fit" class="nav-button">Get Early Access</a>
-        </nav>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="logo-text">Healthy</span>
+                    <span class="logo-beta">AI</span>
+                </div>
+                <a href="mailto:join@gethealthy.fit" class="nav-button">
+                    <span>Get Early Access</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1>Your AI Health Copilot</h1>
-                <p class="subtitle">Make optimal health decisions with AI-powered nutrition tracking, personalized insights, and lab-based recommendations.</p>
-                <div class="cta-buttons">
-                    <a href="mailto:join@gethealthy.fit" class="primary-button">Join Waitlist</a>
-                    <button class="secondary-button">See How It Works</button>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="eyebrow">AI-POWERED HEALTH OPTIMIZATION</div>
+                    <h1>Your Personal <span class="gradient-text">AI Health Copilot</span></h1>
+                    <p class="subtitle">Make optimal health decisions with AI-powered nutrition tracking, personalized insights, and science-based recommendations tailored just for you.</p>
+                    <div class="cta-buttons">
+                        <a href="mailto:join@gethealthy.fit" class="primary-button">
+                            <span>Join Waitlist</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-bolt"></i>
+                            <span>AI-Powered</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-user"></i>
+                            <span>Personalized</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-flask"></i>
+                            <span>Science-Backed</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="trust-badges">
-                    <span>AI-Powered</span>
-                    <span>Personalized</span>
-                    <span>Science-Backed</span>
-                </div>
-            </div>
-            <div class="hero-image">
-                <!-- Hero illustration can be added here later -->
+                <!-- Hero illustration removed -->
             </div>
         </section>
     </main>
