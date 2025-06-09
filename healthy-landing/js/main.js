@@ -71,6 +71,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Video modal functionality removed
 
+// EKG animation interaction
+const setupEkgInteraction = () => {
+    const ekgContainer = document.querySelector('.ekg-container');
+    if (!ekgContainer) return;
+    
+    const ekgLine = ekgContainer.querySelector('.ekg-line');
+    if (!ekgLine) return;
+    
+    ekgContainer.addEventListener('click', () => {
+        // Skip if already active
+        if (ekgContainer.classList.contains('active')) return;
+        
+        ekgContainer.classList.add('active');
+        
+        // Temporarily speed up the animation using the CSS variable
+        document.documentElement.style.setProperty('--scan-duration', '6s');
+        
+        // Remove active class and restore normal speed after animation completes
+        setTimeout(() => {
+            ekgContainer.classList.remove('active');
+            document.documentElement.style.setProperty('--scan-duration', '12s');
+        }, 600); // Slightly longer to ensure effect is visible
+    });
+};
+
 // Initialize everything on DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize scroll handlers
@@ -80,6 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize animations
     animateElements();
     setTimeout(animateShapes, 1000);
+    
+    // Setup EKG interactions
+    setupEkgInteraction();
     
     // Add hover effects to buttons
     document.querySelectorAll('.primary-button, .nav-button').forEach(button => {
