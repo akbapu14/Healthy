@@ -40,6 +40,9 @@
     /* Transitions */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* EKG Animation Variables */
+    --scan-duration: 8s;
 }
 
 /* Reset & Base */
@@ -278,11 +281,12 @@ h1 {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    padding: 10rem 0 6rem;
+    padding: 8rem 0 5rem;
     position: relative;
+    overflow-x: hidden;
     z-index: 1;
 }
 
@@ -421,7 +425,7 @@ h1 {
     justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
-    margin: 2.5rem auto 0;
+    margin: 1.5rem auto 0;
     color: var(--medium-gray);
     font-weight: 500;
     max-width: 100%;
@@ -468,7 +472,7 @@ h1 {
     }
     
     .hero {
-        padding: 8rem 0 5rem;
+        padding: 9rem 0 6rem;
     }
     
     .hero-content {
@@ -673,12 +677,63 @@ h1 {
 
 /* EKG Animation */
 .ekg-container {
-    width: 100%;
-    height: 120px;
     position: relative;
-    margin: var(--space-8) auto 0;
+    width: 100%;
+    padding: 0;
+    cursor: pointer;
+}
+
+.ekg-container.edge-to-edge {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 45px;
+    margin-bottom: 0;
+    z-index: 1;
+    height: 120px; /* Increased height for taller EKG */
     overflow: hidden;
-    background-color: transparent;
+    background: transparent;
+}
+
+.ekg-line {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    animation: continuous-scroll 12s linear infinite;
+}
+
+/* Continuous scrolling animation for medical accuracy (75 bpm) */
+@keyframes continuous-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Set up the SVG styling */
+.ekg-line svg {
+    flex: 0 0 50%;
+    height: 100%;
+    display: block;
+}
+
+.ekg-line path {
+    stroke: var(--primary);
+    stroke-width: 3.5; /* Increased for better visibility in taller container */
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.9;
+    vector-effect: non-scaling-stroke;
+}
+
+/* Remove old animations */
+.ekg-container:active {
     cursor: pointer;
 }
 
@@ -686,47 +741,18 @@ h1 {
     animation: pulse-glow 0.5s ease;
 }
 
-/* Drawing EKG line from left to right */
-:root {
-    --scan-duration: 12s;
-}
-
-.ekg-container {
-    position: relative;
-}
-
-.ekg-line {
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
-
-/* Create a real drawing effect with SVG stroke animation */
-.ekg-line svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.ekg-line path {
-    stroke: var(--primary);
-    stroke-width: 2.5;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-opacity: 0.9;
-    stroke-dasharray: 2400; /* Total length of the path */
-    stroke-dashoffset: 2400; /* Initially hidden */
-    animation: draw-ekg var(--scan-duration) linear infinite;
-}
-
-@keyframes draw-ekg {
-    0% {
-        stroke-dashoffset: 2400;
+@keyframes pulse-glow {
+    0%, 100% {
+        transform: scale(1);
     }
-    100% {
-        stroke-dashoffset: 0;
+    50% {
+        transform: scale(1.02);
     }
+}
+
+.ekg-container:active path {
+    animation-duration: calc(var(--scan-duration) / 2);
+    stroke-opacity: 1;
 }
 
 @keyframes pulse-glow {
