@@ -72,29 +72,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Video modal functionality removed
 
 // EKG animation interaction
-const setupEkgInteraction = () => {
+document.addEventListener('DOMContentLoaded', function() {
     const ekgContainer = document.querySelector('.ekg-container');
-    if (!ekgContainer) return;
     
-    const ekgLine = ekgContainer.querySelector('.ekg-line');
-    if (!ekgLine) return;
-    
-    ekgContainer.addEventListener('click', () => {
-        // Skip if already active
-        if (ekgContainer.classList.contains('active')) return;
-        
-        ekgContainer.classList.add('active');
-        
-        // Temporarily speed up the animation using the CSS variable
-        document.documentElement.style.setProperty('--scan-duration', '6s');
-        
-        // Remove active class and restore normal speed after animation completes
-        setTimeout(() => {
-            ekgContainer.classList.remove('active');
-            document.documentElement.style.setProperty('--scan-duration', '12s');
-        }, 600); // Slightly longer to ensure effect is visible
-    });
-};
+    if (ekgContainer) {
+        ekgContainer.addEventListener('click', function() {
+            // Add active class for pulse effect
+            this.classList.add('active');
+            
+            // Speed up animation temporarily
+            const ekgLine = this.querySelector('.ekg-line');
+            if (ekgLine) {
+                ekgLine.style.animationDuration = '6s';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    ekgLine.style.animationDuration = '12s';
+                    this.classList.remove('active');
+                }, 2000);
+            }
+        });
+    }
+});
 
 // Initialize everything on DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -105,9 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize animations
     animateElements();
     setTimeout(animateShapes, 1000);
-    
-    // Setup EKG interactions
-    setupEkgInteraction();
     
     // Add hover effects to buttons
     document.querySelectorAll('.primary-button, .nav-button').forEach(button => {
