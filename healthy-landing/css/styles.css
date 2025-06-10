@@ -281,10 +281,10 @@ h1 {
 
 /* Hero Section */
 .hero {
-    min-height: 75vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    padding: 6rem 0 3rem;
+    padding: 8rem 0 5rem;
     position: relative;
     overflow-x: hidden;
     z-index: 1;
@@ -472,7 +472,7 @@ h1 {
     }
     
     .hero {
-        padding: 8rem 0 5rem;
+        padding: 9rem 0 6rem;
     }
     
     .hero-content {
@@ -690,8 +690,8 @@ h1 {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 45px;
+    margin-bottom: 0;
     z-index: 1;
     height: 120px; /* Increased height for taller EKG */
     overflow: hidden;
